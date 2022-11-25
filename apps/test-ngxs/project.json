@@ -1,0 +1,97 @@
+{
+  "name": "test-ngxs",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/test-ngxs/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/test-ngxs",
+        "index": "apps/test-ngxs/src/index.html",
+        "main": "apps/test-ngxs/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "apps/test-ngxs/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/test-ngxs/src/favicon.ico",
+          "apps/test-ngxs/src/assets"
+        ],
+        "styles": [
+          "apps/test-ngxs/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "test-ngxs:build:production"
+        },
+        "development": {
+          "browserTarget": "test-ngxs:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "test-ngxs:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+        ],
+        "tsConfig": "apps/test-ngxs/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/test-ngxs/src/favicon.ico",
+          "apps/test-ngxs/src/assets"
+        ],
+        "styles": [
+          "apps/test-ngxs/src/styles.scss"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}
